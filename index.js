@@ -10,6 +10,22 @@ const colors = [
 ];
 startBtn.addEventListener("click", changeBgc);
 stopBtn.addEventListener("click", stopChangebgc);
-// const randomIntegerFromInterval = (min, max) => {
-//     return Math.floor(Math.random() * (max - min + 1) + min);
-//   };
+
+const randomIntegerFromInterval = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
+let interval = null;
+
+function changeBgc() {
+  interval = setInterval(() => {
+    body.style.backgroundColor =
+      colors[randomIntegerFromInterval(0, colors.length - 1)];
+  }, 1000);
+  startBtn.disabled = true;
+}
+
+function stopChangebgc() {
+  clearInterval(interval);
+  stopBtn.disabled = false;
+}
